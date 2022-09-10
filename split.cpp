@@ -11,16 +11,33 @@ the function below should be the only one in this file.
 */
 
 #include "split.h"
+#include <cstddef>
+#include <iostream>
+using namespace std; 
 
-/* Add a prototype for a helper function here if you need */
 
-void split(Node*& in, Node*& odds, Node*& evens)
+//split checks if the head exists, if it does then it checks if the value exists
+//if value is even, value is transferred to even pointer and recursion is called on nextptrs of even and odd
+//same with odd
+void split(Node *&in, Node *&evens, Node *&odds)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+    Node* current = in;
+    if(!current){
+        evens = NULL; 
+        odds = NULL; 
+        return; 
+    }
+    else if(current->value % 2 == 0){
+        evens = current; 
+        //cout << evens-> value << endl; 
+        split(in->next, evens->next, odds);
+    }
+    else{
+        odds = current; 
+        //cout << evens-> value << endl; 
+        split(in->next, evens, odds->next);
 
+    }
 }
+//traverse just checks to see if values of linked list exist
 
-/* If you needed a helper function, write it here */
-
-// WRITE YOUR CODE HERE

@@ -90,26 +90,6 @@ void ULListStr::push_back(const std::string& val)
   size_++; 
 }
 
-void ULListStr::pop_back(){
-  if(size_ == 1){
-    delete tail_; 
-    tail_ = head_ =  NULL; 
-  }
-  else if(tail_->last == 1){
-    tail_ = tail_->prev; 
-    delete tail_->next; 
-    tail_->next = NULL; 
-  }
-  //if empty 
-  else if(size_ == 0){
-    return; 
-    //nothing in there list empty 
-  }
-  else{
-    tail_->last--; 
-  }
-  size_--; 
-}
 
 void ULListStr::push_front(const std::string& val){
   if(empty()){
@@ -134,6 +114,27 @@ void ULListStr::push_front(const std::string& val){
     head_->first--; 
     size_++; 
   }
+}
+
+void ULListStr::pop_back(){
+  if(size_ == 1){
+    delete tail_; 
+    tail_ = head_ =  NULL; 
+  }
+  else if(tail_->last == 1){
+    tail_ = tail_->prev; 
+    delete tail_->next; 
+    tail_->next = NULL; 
+  }
+  //if empty 
+  else if(empty()){
+    return; 
+    //nothing in there list empty 
+  }
+  else{
+    tail_->last--; 
+  }
+  size_--; 
 }
 
 void ULListStr::pop_front(){
